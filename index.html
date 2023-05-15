@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./images/dés.png" type="image/x-icon">
-    <title>Jeu de dés</title>
-  </head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="./images/dés.png" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <title>Jeu de dés</title>
+    </head>
 
-  <body>
+    <body>
 
-    <h1>Jeu de dés</h1>
-    <h2>Règles :</h2>
-    <p>
-      Le jeu comprend 2 joueurs sur un seul et même écran. 
-      Chaque joueur possède un score temporaire (ROUND) et un score global (GLOBAL).
-      À chaque tour, le joueur a son ROUND initialisé à 0 et peut lancer un dé autant de fois qu'il le souhaite. Le 
-      résultat d’un lancer est ajouté au ROUND. 
-      Lors de son tour, le joueur peut décider à tout moment de:
-      - Cliquer sur l’option “Hold”, qui permet d’envoyer les points du ROUND vers le GLOBAL. Ce sera alors le
-      tour de l’autre joueur.
-      - Lancer le dé. S’il obtient un 1, son score ROUND est perdu et c’est la fin de son tour.
-      Le premier joueur qui atteint les 100 points sur global gagne le jeu.</p>
+        <section class="firstSection">
+            <h1 class="title">Jeu de dés</h1>
+            <div class="NewGameDiv" id="newGame">
+                <img src="./images/plus.png" alt="icone plus" class="imagePlus">
+                <p class="paraFirstSection">New Game</p>
+            </div>
+            <div class="dice">
 
-      <div class="gameBoard">
+            </div>
+            <div class="rollDiceDiv">
+                <img src="./images/cercle.png" alt="" class="imageRole">
+                <p class="paraRoll">roll dice</p>
+            </div>
+            <div class="holdDiv">
+                <img src="./images/carre.png" alt="" class="imageHold">
+                <p class="paraHold">hold</p>
+            </div>
+        </section>
+        
+        <section class="gameBoard">
+
+            <div class="divPlayerOne">
+                <div class="playerOne">
+                    <p>player 1</p>
+                    <span id="globalScorePlayerOne">00</span>
+                </div>
+                <div class="currentScore">
+                    <p>current</p>
+                    <span id="currentScorePlayerOne">00</span>
+                </div>
+
+            </div>
+
+            <div class="divPlayerTwo">
+                <div class="playerTwo">
+                    <p>player 2</p>
+                    <span id="globalScorePlayerTwo">00</span>
+                </div>
+                <div class="currentScore">
+                    <p>current</p>
+                    <span id="currentScorePlayerTwo">00</span>
+                </div>
+
+            </div>
 
 
-      </div>
+        </section>
 
-
-
-    <script src="script.js"></script>
-  </body>
+        <script src="script.js"></script>
+    </body>
 </html>

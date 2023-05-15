@@ -1,18 +1,118 @@
+/*****RESET******/
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-family: 'Lato', sans-serif;
 }
 
 body{
-  background-color: aquamarine;
+  background-image: url(./images/background.jpg);
+  background-size: cover;
 }
 
+p, h1{
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+
+/*****FIRST SECTION****/
+.firstSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.title{
+  margin-bottom: 10px;
+  text-decoration: underline;
+  font-size: 5em;
+}
+
+.NewGameDiv, .rollDiceDiv, .holdDiv{
+  display: flex;
+  position: absolute;
+  margin-top: 30vh;
+}
+
+.rollDiceDiv{
+  margin-top: 130vh;
+}
+
+.holdDiv{
+  margin-top: 140vh;
+}
+
+.imagePlus, .imageHold, .imageRole{
+  width: 2em;
+  margin-right: 15px;
+}
+
+.imageHold{
+  rotate: 180deg;
+}
+
+.paraFirstSection, .paraRoll, .paraHold{
+  font-size: 1.5em;
+}
+
+.dice{
+  width: 100px;
+  height: 100px;
+  background-color: rebeccapurple;
+  position: absolute;
+  margin-top: 80vh;
+}
+
+/*********GAME BOARD***********/
+
 .gameBoard{
+  margin: auto;
   width: 90em;
-  height: 40em;
-  background-color: red;
-  grid: 2fr;
+  height: 80vh;
+  background-color: white;
   border: 1px solid black;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-template-rows: 1fr;
+  gap: 10px;
+}
+
+.playerOne{
+  grid-column-start: 1;
+}
+.playerTwo{
+  grid-column-start: 2;
+}
+
+/*********STYLE COLUMN PLAYER***********/
+
+.playerOne, .playerTwo{
+  font-size: 2.5em;
+  letter-spacing: 2px;
+}
+.divPlayerOne{
+  background-color: rgb(236, 234, 234);
+}
+
+.divPlayerOne, .divPlayerTwo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.currentScore{
+  background-color: red;
+  height: 70px;
+  width: 100px;
+  align-self: center;
+}
+
+.currentScore p{
+  font-weight: bold;
 }
