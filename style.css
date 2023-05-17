@@ -37,6 +37,7 @@ p, h1{
   display: flex;
   position: absolute;
   margin-top: 30vh;
+  cursor: pointer;
 }
 
 .rollDiceDiv{
@@ -60,25 +61,26 @@ p, h1{
   font-size: 1.5em;
 }
 
-.dice{
+.diceDiv{
   width: 100px;
   height: 100px;
-  background-color: rebeccapurple;
   position: absolute;
   margin-top: 80vh;
+  text-align: center;
+  font-size: 2em;
 }
 
 /*********GAME BOARD***********/
 
 .gameBoard{
   margin: auto;
-  width: 90em;
+  width: 1000px;
   height: 80vh;
   background-color: white;
   border: 1px solid black;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   gap: 10px;
 }
