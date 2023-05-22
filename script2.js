@@ -1,10 +1,16 @@
+import { Confetti} from './lib/confetti.js'
+
 /**LES VARIABLES**/
 let namePlayerOne = prompt('Nom du joueur :')
 let namePlayerTwo = prompt('Nom du joueur :')
+document.getElementById("namePlayerOne").innerText = namePlayerOne
+document.getElementById("namePlayerTwo").innerText = namePlayerTwo
+
 let nameOnePara = document.querySelector(".nameOne")
 let nameTwoPara = document.querySelector(".nameTwo")
 let divPlayerOne = document.querySelector(".divPlayerOne")
 let divPlayerTwo = document.querySelector(".divPlayerTwo")
+let winDiv = document.getElementById("win")
 let actifPlayer
 let gameRound = 0
 
@@ -25,8 +31,9 @@ const players = [playerOne, playerTwo]
 
 
 /****AJOUT EVENEMENTS****/
-document.getElementById("namePlayerOne").innerText = namePlayerOne
-document.getElementById("namePlayerTwo").innerText = namePlayerTwo
+document.getElementById("newGame").addEventListener("click", () => {
+  newGame()
+})
 
 document.querySelector('.rollDiceDiv').addEventListener("click", () =>{
   rollDice()
@@ -36,9 +43,18 @@ document.querySelector(".holdDiv").addEventListener("click", () => {
   hold()
 })
 
+/*****FONCTION NEW GAME*******/
+function newGame(){
+  Confetti.stopAnimationConfeti()
+  winDiv.innerText = ''
+  gameRound = 0
+  playerOne.globalScore = '0'
+  playerTwo.globalScore = '0'
+}
 
 /********FONCTION ROLL DICE (nb aléa et changement de joueur********/
 function rollDice(){
+  winDiv.innerText = ''
   const randomDice = Math.floor(Math.random() * 6 + 1)
   const result = randomDice
   console.log(result)
@@ -54,12 +70,15 @@ function rollDice(){
   }
   /*****VOIR SI RANDOM RESULT = 1 ET CHANGMENT DE JOUEUR AVEC REVERSE () (inverse ordre tableau)****/
   if(result == 1){
-    changeCssPlayer()
-    players[0].currentScore = 0
-    actifPlayer.tour = false
-    players.reverse()
-    players[0].tour = true
-    currentScoreDivs()
+    winDiv.innerText = 'Perdu, joueur suivant !'
+    setTimeout (() =>{
+      changeCssPlayer()
+      players[0].currentScore = 0
+      actifPlayer.tour = false
+      players.reverse()
+      players[0].tour = true
+      currentScoreDivs()
+    }, 2000)
   }
 }
 
@@ -71,13 +90,22 @@ function hold(){
   players[0].tour = false
   if(players[0].globalScore >= 10){
     players[0].win = true
-    
+    Confetti.launchAnimationConfeti()
+    if(players[0] == playerOne){
+      winDiv.textContent = `Joueur ${namePlayerOne} gagne !`
+    }
+    if(players[0] == playerTwo){
+      winDiv.textContent = `Joueur ${namePlayerTwo} gagne !`
+    }
   }
-  currentScoreDivs()
-  players.reverse()
-  players[0].tour = true
-  globalScoreHtml()
-  changeCssPlayer()
+  setTimeout(() => {
+    currentScoreDivs()
+    players.reverse()
+    players[0].tour = true
+    globalScoreHtml()
+    changeCssPlayer()
+
+  }, 1500)
 }
 
 /*****SCORE EN CURRENT EN HTML******/
@@ -109,8 +137,6 @@ function changeCssPlayer(){
     nameTwoPara.style.textDecoration = "none"
     nameOnePara.style.color = "green"
     nameTwoPara.style.color = "black"
-    currentScore.style.fontSize = "1.5em"
-
   }
   if(players[0] == playerTwo){
     divPlayerTwo.style.backgroundColor = "rgb(195, 195, 195)"
@@ -121,4 +147,3 @@ function changeCssPlayer(){
     nameOnePara.style.color = "black"
   }
 }
-
