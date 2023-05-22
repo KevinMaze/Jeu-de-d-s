@@ -98,9 +98,6 @@ p, h1{
   font-size: 2.5em;
   letter-spacing: 2px;
 }
-.divPlayerOne{
-  background-color: rgb(236, 234, 234);
-}
 
 .divPlayerOne, .divPlayerTwo{
   display: flex;
@@ -113,6 +110,7 @@ p, h1{
   height: 70px;
   width: 100px;
   align-self: center;
+  
 }
 
 .currentScore p{
