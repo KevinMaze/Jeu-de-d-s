@@ -129,3 +129,25 @@ p, h1{
   font-size: 2em;
   font-weight: 300;
 }
+
+/******ROLES******/
+.roles{
+
+  left: 50%;
+  transform: translate(-50%);
+  width: 1000px;
+  position: absolute;
+
+  background-color: white;
+}
+
+.roles h3{
+    text-decoration: underline;
+    text-align: center;
+}
+
+.roles-para{
+  padding-left: 80px;
+  padding-right: 80px;
+  font-weight: 400;
+}
