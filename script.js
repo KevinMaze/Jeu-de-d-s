@@ -32,7 +32,7 @@ const players = [playerOne, playerTwo]
 
 /****AJOUT EVENEMENTS****/
 document.getElementById("newGame").addEventListener("click", () => {
-  newGame()
+  location.reload();
 })
 
 document.querySelector('.rollDiceDiv').addEventListener("click", () =>{
@@ -44,13 +44,13 @@ document.querySelector(".holdDiv").addEventListener("click", () => {
 })
 
 /*****FONCTION NEW GAME*******/
-function newGame(){
-  Confetti.stopAnimationConfeti()
-  winDiv.innerText = ''
-  gameRound = 0
-  playerOne.globalScore = '0'
-  playerTwo.globalScore = '0'
-}
+// function newGame(){
+//   Confetti.stopAnimationConfeti()
+//   winDiv.innerText = ''
+//   gameRound = 0
+//   playerOne.globalScore = '0'
+//   playerTwo.globalScore = '0'
+// }
 
 /********FONCTION ROLL DICE (nb aléa et changement de joueur********/
 function rollDice(){
@@ -78,7 +78,7 @@ function rollDice(){
       players.reverse()
       players[0].tour = true
       currentScoreDivs()
-    }, 2000)
+    }, 1000)
   }
 }
 
@@ -88,7 +88,7 @@ function hold(){
   players[0].globalScore += players[0].currentScore
   players[0].currentScore = 0
   players[0].tour = false
-  if(players[0].globalScore >= 10){
+  if(players[0].globalScore >= 100){
     players[0].win = true
     Confetti.launchAnimationConfeti()
     if(players[0] == playerOne){
