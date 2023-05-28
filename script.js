@@ -131,7 +131,7 @@ function globalScoreHtml(){
 /******CHANGEMENT STYLE EN FONCTION DU JOUEUR******/
 function changeCssPlayer(){
   if(players[0] == playerOne){
-    divPlayerOne.style.backgroundColor = "rgb(195, 195, 195)"
+    divPlayerOne.style.backgroundColor = "rgb(224, 218, 218)"
     divPlayerTwo.style.backgroundColor = "white"
     nameOnePara.style.textDecoration = "underline"
     nameTwoPara.style.textDecoration = "none"
@@ -139,7 +139,7 @@ function changeCssPlayer(){
     nameTwoPara.style.color = "black"
   }
   if(players[0] == playerTwo){
-    divPlayerTwo.style.backgroundColor = "rgb(195, 195, 195)"
+    divPlayerTwo.style.backgroundColor = "rgb(224, 218, 218)"
     divPlayerOne.style.backgroundColor = "white"
     nameOnePara.style.textDecoration = "none"
     nameTwoPara.style.textDecoration = "underline"
