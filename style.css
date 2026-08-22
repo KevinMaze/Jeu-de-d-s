@@ -1,153 +1,298 @@
-/*****RESET******/
+/*****RESET & PALETTE******/
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', system-ui, sans-serif;
+}
+
+:root{
+  --bg: #eef1f8;
+  --surface: #ffffff;
+  --text: #1f2430;
+  --text-muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-light: #eef0ff;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(31, 36, 48, 0.08);
+}
+
+html, body{
+  height: 100%;
+  /* tout le jeu doit tenir dans la fenêtre, sans scroll */
+  overflow: hidden;
 }
 
 body{
-  background-image: url(./images/background.jpg);
-  background-size: cover;
+  background: var(--bg);
+  color: var(--text);
 }
 
-p, h1{
-  text-transform: uppercase;
+p, h1, h3{
   font-weight: 300;
 }
 
+.hidden{
+  display: none !important;
+}
 
-/*****FIRST SECTION****/
-.firstSection{
+/*****OVERLAYS (saisie des noms / règles)******/
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 20px;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
 }
 
-.title{
-  margin-bottom: 10px;
-  text-decoration: underline;
-  font-size: 5em;
-}
-
-.NewGameDiv, .rollDiceDiv, .holdDiv{
-  display: flex;
-  position: absolute;
-  margin-top: 30vh;
-  cursor: pointer;
-}
-
-.rollDiceDiv{
-  margin-top: 130vh;
-}
-
-.holdDiv{
-  margin-top: 140vh;
-}
-
-.imagePlus, .imageHold, .imageRole{
-  width: 2em;
-  margin-right: 15px;
-}
-
-.imageHold{
-  rotate: 180deg;
-}
-
-.paraFirstSection, .paraRoll, .paraHold{
-  font-size: 1.5em;
-}
-
-.diceDiv{
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  margin-top: 80vh;
-  text-align: center;
-  font-size: 2em;
-}
-
-/*********GAME BOARD***********/
-
-.gameBoard{
-  margin: auto;
-  width: 1000px;
-  height: 80vh;
-  background-color: white;
-  border: 1px solid black;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  gap: 10px;
-}
-
-.playerOne{
-  grid-column-start: 1;
-}
-.playerTwo{
-  grid-column-start: 2;
-}
-
-/*********STYLE COLUMN PLAYER***********/
-
-.playerOne, .playerTwo{
-  font-size: 2.5em;
-  letter-spacing: 2px;
-}
-
-.divPlayerOne, .divPlayerTwo{
+.card{
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(24px, 4vw, 40px);
+  width: min(90vw, 400px);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  gap: 18px;
 }
 
-.currentScore{
-  background-color: rgb(228, 57, 57);
-  height: 70px;
-  width: 100px;
-  align-self: center;
-  font-size: 1.2em;
-  
+.cardRules{
+  width: min(90vw, 560px);
+  max-height: 80vh;
+  overflow-y: auto;
+  gap: 14px;
 }
 
-.currentScore p{
-  font-weight: bold;
+.card .title{
+  text-align: center;
+  font-size: clamp(1.8em, 5vw, 2.4em);
+  letter-spacing: 1px;
+  color: var(--accent);
 }
 
-#currentScorePlayerOne, #currentScorePlayerTwo {
-  color: white;
-  font-size: 1.2em;
-  font-weight: 300;
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-#globalScorePlayerOne, #globalScorePlayerTwo {
-  color: rgb(228, 57, 57);
-  font-size: 2em;
-  font-weight: 300;
+.field label{
+  font-size: 0.85em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/******ROLES******/
-.roles{
-
-  left: 50%;
-  transform: translate(-50%);
-  width: 1000px;
-  position: absolute;
-
-  background-color: white;
+.field input{
+  border: 1px solid #d7dae2;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.15s ease;
 }
 
-.roles h3{
-    text-decoration: underline;
-    text-align: center;
+.field input:focus{
+  border-color: var(--accent);
 }
 
 .roles-para{
-  padding-left: 80px;
-  padding-right: 80px;
   font-weight: 400;
+  font-size: 0.95em;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.roles-para + .roles-para{
+  margin-top: 10px;
+}
+
+/*****BUTTONS******/
+.btn{
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+
+.btn:active{
+  transform: scale(0.96);
+}
+
+.btn:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimary{
+  background: var(--accent);
+  color: white;
+}
+
+.btnPrimary:hover{
+  opacity: 0.9;
+}
+
+.btnSecondary{
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.btnSecondary:hover{
+  opacity: 0.85;
+}
+
+.btnGhost{
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  font-size: 0.85em;
+}
+
+/* :disabled doit gagner sur :hover même specificité sinon un bouton peut rester
+   survolé au clic (le curseur ne bouge pas) et paraître actif alors qu'il est bloqué */
+.btnPrimary:disabled:hover,
+.btnSecondary:disabled:hover{
+  opacity: 0.5;
+}
+
+.btnGhost:hover{
+  color: var(--accent);
+}
+
+/*****APP LAYOUT (une seule page, sans scroll)******/
+.app{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 3vh, 32px);
+  padding: clamp(16px, 3vh, 40px) clamp(16px, 4vw, 60px);
+}
+
+.topBar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.titleSmall{
+  font-size: clamp(1.1em, 4vw, 2em);
+  letter-spacing: 1px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.topBarActions{
+  display: flex;
+  gap: 8px;
+}
+
+/*********GAME BOARD***********/
+.gameBoard{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.playerCard{
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.5vh, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.playerCard.active{
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.playerName{
+  font-size: clamp(1.1em, 2.2vw, 1.6em);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.playerCard.active .playerName{
+  color: var(--accent);
+}
+
+.globalScore{
+  font-size: clamp(2em, 5vw, 3em);
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.currentScore{
+  background: var(--text);
+  color: white;
+  border-radius: 12px;
+  padding: 8px 20px;
+  text-align: center;
+  min-width: 90px;
+}
+
+.playerCard.active .currentScore{
+  background: var(--accent);
+}
+
+.currentScore p{
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.currentScore span{
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+/*********DICE ZONE***********/
+.diceZone{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.diceImg{
+  width: clamp(64px, 9vw, 110px);
+  height: clamp(64px, 9vw, 110px);
+}
+
+.winMessage{
+  /* hauteur reservee pour eviter que l'apparition/disparition du message ne bouge le layout */
+  min-height: 1.4em;
+  font-weight: 700;
+  color: var(--success);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.95em;
+}
+
+.actions{
+  display: flex;
+  gap: 16px;
 }

@@ -15,70 +15,78 @@
 
     <body>
 
-        <section class="firstSection">
-            <h1 class="title">Jeu de dés</h1>
-            <div class="NewGameDiv" id="newGame">
-                <img src="./images/plus.png" alt="icone plus" class="imagePlus">
-                <p class="paraFirstSection">New Game</p>
-            </div>
-
-            <div class="diceDiv">
-                <img id="imgDice">
-                <span id="win"></span>
-            </div>
-
-            <div class="rollDiceDiv">
-                <img src="./images/cercle.png" alt="" class="imageRole">
-                <p class="paraRoll">roll dice</p>
-            </div>
-            <div class="holdDiv">
-                <img src="./images/carre.png" alt="" class="imageHold">
-                <p class="paraHold">hold</p>
-            </div>
-        </section>
-        
-        <section class="gameBoard">
-
-            <div class="divPlayerOne">
-                <div class="playerOne">
-                    <p id="namePlayerOne" class="nameOne"></p>
-                    <span id="globalScorePlayerOne"></span>
+        <!-- Ecran de saisie des noms : remplace le prompt() par un vrai formulaire -->
+        <div class="overlay" id="setupOverlay">
+            <div class="card">
+                <h1 class="title">Jeu de dés</h1>
+                <div class="field">
+                    <label for="inputPlayerOne">Joueur 1</label>
+                    <input type="text" id="inputPlayerOne" placeholder="Nom du joueur 1" maxlength="15" autocomplete="off">
                 </div>
-                <div class="currentScore">
-                    <p>current</p>
-                    <span id="currentScorePlayerOne"></span>
+                <div class="field">
+                    <label for="inputPlayerTwo">Joueur 2</label>
+                    <input type="text" id="inputPlayerTwo" placeholder="Nom du joueur 2" maxlength="15" autocomplete="off">
                 </div>
-
+                <button class="btn btnPrimary" id="startGame">Jouer</button>
             </div>
+        </div>
 
-            <div class="divPlayerTwo">
-                <div class="playerTwo">
-                    <p id="namePlayerTwo" class="nameTwo"></p>
-                    <span id="globalScorePlayerTwo"></span>
-                </div>
-                <div class="currentScore">
-                    <p>current</p>
-                    <span id="currentScorePlayerTwo"></span>
-                </div>
-
+        <!-- Regles affichees en pop-in, pour ne jamais pousser le jeu et provoquer un scroll -->
+        <div class="overlay hidden" id="rulesOverlay">
+            <div class="card cardRules">
+                <h3>Les règles</h3>
+                <p class="roles-para">Le jeu comprend 2 joueurs sur un seul et même écran.
+                    Chaque joueur possède un score temporaire (ROUND) et un score global (GLOBAL).
+                    À chaque tour, le joueur a son ROUND initialisé à 0 et peut lancer un dé autant de fois qu'il le souhaite.
+                    Le résultat d'un lancer est ajouté au ROUND. Lors de son tour, le joueur peut décider à tout moment de :</p>
+                <p class="roles-para">— Cliquer sur "Hold", qui envoie les points du ROUND vers le GLOBAL. Ce sera alors le tour de l'autre joueur.</p>
+                <p class="roles-para">— Lancer le dé. S'il obtient un 1, son score ROUND est perdu et c'est la fin de son tour.
+                    Le premier joueur qui atteint 100 points sur le score global gagne la partie.</p>
+                <button class="btn btnSecondary" id="closeRules">Fermer</button>
             </div>
-        </section>
+        </div>
 
-        <section class="roles">
-            <h3>Les Règles</h3>
-            <p class="roles-para">Le jeu comprend 2 joueurs sur un seul et même écran.
-                Chaque joueur possède un score temporaire (ROUND) et un score global (GLOBAL).
-                À chaque tour, le joueur a son ROUND initialisé à 0 et peut lancer un dé autant de fois qu'il le souhaite. Le
-                résultat d’un lancer est ajouté au ROUND.
-                Lors de son tour, le joueur peut décider à tout moment de:</p><br>
-            <p class="roles-para">- Cliquer sur l’option “Hold”, qui permet d’envoyer les points du ROUND vers le GLOBAL. Ce sera alors le
-                tour de l’autre joueur.</p><br>
-            <p class="roles-para">- Lancer le dé. S’il obtient un 1, son score ROUND est perdu et c’est la fin de son tour.
-                Le premier joueur qui atteint les 100 points sur global gagne le jeu.</p>
-        </section>
+        <main class="app hidden" id="app">
 
-        
-        
+            <header class="topBar">
+                <h1 class="titleSmall">Jeu de dés</h1>
+                <div class="topBarActions">
+                    <button class="btn btnGhost" id="rulesBtn">Règles</button>
+                    <button class="btn btnGhost" id="newGame">Nouvelle partie</button>
+                </div>
+            </header>
+
+            <section class="gameBoard">
+                <div class="playerCard" id="cardPlayerOne">
+                    <p id="namePlayerOne" class="playerName"></p>
+                    <span id="globalScorePlayerOne" class="globalScore"></span>
+                    <div class="currentScore">
+                        <p>current</p>
+                        <span id="currentScorePlayerOne"></span>
+                    </div>
+                </div>
+
+                <div class="playerCard" id="cardPlayerTwo">
+                    <p id="namePlayerTwo" class="playerName"></p>
+                    <span id="globalScorePlayerTwo" class="globalScore"></span>
+                    <div class="currentScore">
+                        <p>current</p>
+                        <span id="currentScorePlayerTwo"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="diceZone">
+                <img id="imgDice" alt="dé" class="diceImg">
+                <p id="win" class="winMessage"></p>
+                <div class="actions">
+                    <button class="btn btnPrimary" id="rollBtn">Lancer le dé</button>
+                    <button class="btn btnSecondary" id="holdBtn">Hold</button>
+                </div>
+            </section>
+
+        </main>
+
         <script type="module" src="script.js"></script>
     </body>
 </html>
